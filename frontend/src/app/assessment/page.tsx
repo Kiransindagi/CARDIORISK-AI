@@ -1,19 +1,62 @@
 'use client';
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
+
+interface FormData {
+  age: number;
+  sex: string;
+  chest_pain_type: string;
+  resting_bp: number;
+  cholesterol: number;
+  fasting_blood_sugar: string;
+  resting_ecg: string;
+  max_heart_rate: number;
+  exercise_induced_angina: string;
+  st_depression: number;
+  st_slope: string;
+  num_major_vessels: number;
+  thalassemia: string;
+}
+
+interface ShapFactor {
+  feature: string;
+  value: string | number;
+  contribution: number;
+  label: string;
+}
+
+interface PredictionResponse {
+  prediction: number;
+  prediction_label: string;
+  risk_probability: number;
+  decision_threshold: number;
+  risk_band: string;
+  explanation: {
+    risk_increasing_factors: ShapFactor[];
+    risk_decreasing_factors: ShapFactor[];
+  };
+  version: string;
+  disclaimer: string;
+}
+
+interface ApiError {
+  error?: {
+    message?: string;
+  };
+}
 
 const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
 
 export default function RiskAssessment() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     age: 50, sex: 'Male', chest_pain_type: 'Typical Angina', resting_bp: 120, cholesterol: 200,
     fasting_blood_sugar: 'No', resting_ecg: 'Normal', max_heart_rate: 150, exercise_induced_angina: 'No',
     st_depression: 0.0, st_slope: 'Flat', num_major_vessels: 0, thalassemia: 'Normal'
   });
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<PredictionResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -21,7 +64,7 @@ export default function RiskAssessment() {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -31,13 +74,17 @@ export default function RiskAssessment() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      const data = await res.json();
+      const data = (await res.json()) as ApiError & PredictionResponse;
       if (!res.ok) {
         throw new Error(data.error?.message || 'Prediction failed');
       }
       setResult(data);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError(String(err));
+      }
     } finally {
       setLoading(false);
     }
@@ -185,7 +232,7 @@ export default function RiskAssessment() {
                     <div>
                       <div className="text-xs font-semibold text-red-600 mb-2">Risk Increasing Factors</div>
                       <div className="space-y-2">
-                        {result.explanation.risk_increasing_factors.map((f: any, i: number) => (
+                        {result.explanation.risk_increasing_factors.map((f: ShapFactor, i: number) => (
                           <div key={i} className="flex justify-between items-center text-sm bg-white/40 p-2 rounded-lg border border-white/50">
                             <span className="text-slate-700">{f.label} <span className="opacity-50 text-xs ml-1">({f.value})</span></span>
                             <span className="font-mono font-medium text-red-600">+{f.contribution.toFixed(3)}</span>
@@ -197,7 +244,7 @@ export default function RiskAssessment() {
                     <div>
                       <div className="text-xs font-semibold text-emerald-600 mb-2 mt-4">Risk Decreasing Factors</div>
                       <div className="space-y-2">
-                        {result.explanation.risk_decreasing_factors.map((f: any, i: number) => (
+                        {result.explanation.risk_decreasing_factors.map((f: ShapFactor, i: number) => (
                           <div key={i} className="flex justify-between items-center text-sm bg-white/40 p-2 rounded-lg border border-white/50">
                             <span className="text-slate-700">{f.label} <span className="opacity-50 text-xs ml-1">({f.value})</span></span>
                             <span className="font-mono font-medium text-emerald-600">{f.contribution.toFixed(3)}</span>

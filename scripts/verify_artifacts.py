@@ -59,16 +59,16 @@ def verify_artifacts():
             
         actual_hash = get_sha256(path)
         if actual_hash == expected_hash:
-            print(f"✓ {name} valid.")
+            print(f"PASS: {name} valid.")
         else:
-            print(f"✗ Checksum mismatch for {name}!")
+            print(f"FAIL: {name} checksum mismatch!")
             all_valid = False
             
     if not all_valid:
         print("Artifact verification failed!")
         sys.exit(1)
     else:
-        print("All artifacts verified successfully.")
+        print("PASS: All artifacts verified successfully.")
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "generate":

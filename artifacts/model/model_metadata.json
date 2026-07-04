@@ -1,7 +1,7 @@
 {
     "model_name": "LogisticRegression_Calibrated",
     "model_version": "1.0.0",
-    "training_date": "2026-07-04 13:55:29.668581",
+    "training_date": "2026-07-04 20:00:59.536893",
     "random_seed": 42,
     "feature_count": 13,
     "feature_order": [

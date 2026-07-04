@@ -7,9 +7,18 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 def get_sha256(filepath):
     sha256_hash = hashlib.sha256()
-    with open(filepath, "rb") as f:
-        for byte_block in iter(lambda: f.read(4096), b""):
-            sha256_hash.update(byte_block)
+    
+    if str(filepath).endswith(".json"):
+        # For JSON files, normalize line endings to LF to prevent cross-platform CI mismatch
+        with open(filepath, "r", encoding="utf-8") as f:
+            content = f.read().replace('\r\n', '\n')
+            sha256_hash.update(content.encode("utf-8"))
+    else:
+        # Binary files like .joblib
+        with open(filepath, "rb") as f:
+            for byte_block in iter(lambda: f.read(4096), b""):
+                sha256_hash.update(byte_block)
+                
     return sha256_hash.hexdigest()
 
 def generate_manifest():

@@ -1,0 +1,9 @@
+{
+    "selected_threshold": 0.44000000000000006,
+    "selection_policy": "recall >= 0.85 then max F1",
+    "development_recall": 0.8558558558558559,
+    "development_specificity": 0.8396946564885496,
+    "development_precision": 0.8189655172413793,
+    "development_f1": 0.8370044052863437,
+    "timestamp": "2026-07-04 13:55:29.519995"
+}

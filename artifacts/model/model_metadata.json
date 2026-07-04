@@ -1,0 +1,28 @@
+{
+    "model_name": "LogisticRegression_Calibrated",
+    "model_version": "1.0.0",
+    "training_date": "2026-07-04 13:55:29.668581",
+    "random_seed": 42,
+    "feature_count": 13,
+    "feature_order": [
+        "age",
+        "sex",
+        "chest_pain_type",
+        "resting_bp",
+        "cholesterol",
+        "fasting_blood_sugar",
+        "resting_ecg",
+        "max_heart_rate",
+        "exercise_induced_angina",
+        "st_depression",
+        "st_slope",
+        "num_major_vessels",
+        "thalassemia"
+    ],
+    "preprocessing_summary": "Imputation, Scaling, OneHotEncoding",
+    "model_hyperparameters": "{'C': 1, 'class_weight': 'balanced', 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1, 'l1_ratio': None, 'max_iter': 1000, 'multi_class': 'deprecated', 'n_jobs': None, 'penalty': 'l2', 'random_state': 42, 'solver': 'lbfgs', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}",
+    "imbalance_handling": "class_weight=balanced natively in LR",
+    "calibration_status": "Uncalibrated (calibration worsened Brier score)",
+    "selected_threshold": 0.44000000000000006,
+    "dataset_identifier": "UCI Heart Disease Cleveland"
+}

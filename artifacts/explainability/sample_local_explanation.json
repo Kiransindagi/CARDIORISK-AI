@@ -1,0 +1,98 @@
+{
+    "risk_increasing_factors": [
+        {
+            "feature": "chest_pain_type",
+            "label": "Chest Pain Type",
+            "value": 4.0,
+            "contribution": 0.07617145324232148,
+            "direction": "increasing"
+        },
+        {
+            "feature": "sex",
+            "label": "Sex",
+            "value": 1.0,
+            "contribution": 0.061794626785058246,
+            "direction": "increasing"
+        },
+        {
+            "feature": "resting_ecg",
+            "label": "Resting Ecg",
+            "value": 2.0,
+            "contribution": 0.034263849742578956,
+            "direction": "increasing"
+        },
+        {
+            "feature": "resting_bp",
+            "label": "Resting Bp",
+            "value": 138.0,
+            "contribution": 0.017269215724628556,
+            "direction": "increasing"
+        },
+        {
+            "feature": "cholesterol",
+            "label": "Cholesterol",
+            "value": 271.0,
+            "contribution": 0.009372538219836649,
+            "direction": "increasing"
+        },
+        {
+            "feature": "fasting_blood_sugar",
+            "label": "Fasting Blood Sugar",
+            "value": 0.0,
+            "contribution": 0.0030110924881591727,
+            "direction": "increasing"
+        }
+    ],
+    "risk_decreasing_factors": [
+        {
+            "feature": "thalassemia",
+            "label": "Thalassemia",
+            "value": 3.0,
+            "contribution": -0.12753557405553606,
+            "direction": "decreasing"
+        },
+        {
+            "feature": "num_major_vessels",
+            "label": "Num Major Vessels",
+            "value": 0.0,
+            "contribution": -0.12460624843939465,
+            "direction": "decreasing"
+        },
+        {
+            "feature": "max_heart_rate",
+            "label": "Max Heart Rate",
+            "value": 182.0,
+            "contribution": -0.08381529403106984,
+            "direction": "decreasing"
+        },
+        {
+            "feature": "st_slope",
+            "label": "St Slope",
+            "value": 1.0,
+            "contribution": -0.04824464822887986,
+            "direction": "decreasing"
+        },
+        {
+            "feature": "st_depression",
+            "label": "St Depression",
+            "value": 0.0,
+            "contribution": -0.02842946327795759,
+            "direction": "decreasing"
+        },
+        {
+            "feature": "exercise_induced_angina",
+            "label": "Exercise Induced Angina",
+            "value": 0.0,
+            "contribution": -0.028324959883016768,
+            "direction": "decreasing"
+        },
+        {
+            "feature": "age",
+            "label": "Age",
+            "value": 59.0,
+            "contribution": -0.0041120676368369,
+            "direction": "decreasing"
+        }
+    ],
+    "base_value": 0.48887474576200735
+}

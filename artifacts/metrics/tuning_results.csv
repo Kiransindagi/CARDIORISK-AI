@@ -1,0 +1,4 @@
+model,best_params
+LogisticRegression,{'classifier__C': 1}
+RandomForest,"{'classifier__n_estimators': 50, 'classifier__min_samples_split': 5, 'classifier__max_depth': None}"
+HistGradientBoosting,"{'classifier__max_iter': 100, 'classifier__max_depth': 5, 'classifier__learning_rate': 0.1}"

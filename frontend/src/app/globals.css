@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-outfit: var(--font-outfit);
+}
+
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 1rem;
+}
+
+.glass-input {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease-in-out;
+  color: #1e293b;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.glass-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #34d399;
+}
+
+body {
+  background: linear-gradient(135deg, #e0f2fe 0%, #dcfce7 50%, #f3e8ff 100%);
+  background-attachment: fixed;
+}
